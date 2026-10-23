@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,111 +8,62 @@
 <title>Waolo Messenger</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{
-  --bg:#0b0812;
-  --panel:#15101f;
-  --panel2:#211832;
-  --accent:#7540c8;
-  --accent2:#9668e8;
-  --text:#f7f2ff;
-  --muted:#a79ab9;
-  --border:#30223f;
-  --danger:#ff7185;
-  --success:#8ee5b0;
-}
+:root{--bg:#0b0812;--panel:#15101f;--panel2:#211832;--accent:#7540c8;--accent2:#9668e8;--text:#f7f2ff;--muted:#a79ab9;--border:#30223f;--danger:#ff7185;--success:#8ee5b0}
 *{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:system-ui,-apple-system,sans-serif;
-  min-height:100dvh;font-size:15px;
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;min-height:100dvh;font-size:15px}
 button,input{font:inherit}
 button{border:0;cursor:pointer;transition:background .2s,transform .15s}
 button:active{transform:scale(.98)}
 button:disabled{opacity:.55;cursor:wait}
-input{
-  width:100%;padding:15px;margin-top:8px;
-  border-radius:14px;border:1px solid var(--border);
-  background:#100c18;color:var(--text);outline:none;
-}
+input{width:100%;padding:14px;margin-top:8px;border-radius:14px;border:1px solid var(--border);background:#100c18;color:var(--text);outline:none}
 input:focus{border-color:var(--accent2)}
-button:focus-visible,input:focus-visible{
-  outline:2px solid var(--accent2);outline-offset:2px;
-}
-.primary{
-  width:100%;padding:15px;border-radius:15px;
-  background:var(--accent);color:white;font-weight:750;
-}
-.primary:active{background:var(--accent2)}
-.secondary{
-  padding:12px;border-radius:13px;
-  background:var(--panel2);color:var(--text);
-}
-.page{max-width:520px;margin:auto;padding:24px 18px 110px}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.primary{width:100%;padding:14px;border-radius:15px;background:var(--accent);color:white;font-weight:750}
+.secondary{padding:11px 13px;border-radius:13px;background:var(--panel2);color:var(--text)}
+.page{max-width:520px;margin:auto;padding:20px 15px 105px}
 .hidden{display:none!important}
 .brand{font-size:31px;font-weight:850;letter-spacing:-1.5px}
 .brand span{color:var(--accent2)}
-.sub{color:var(--muted);line-height:1.55}
-.card{
-  padding:19px;border:1px solid var(--border);
-  background:var(--panel);border-radius:22px;margin-top:17px;
-  box-shadow:0 8px 30px #00000018;
-}
+.sub{color:var(--muted);line-height:1.5}
+.card{padding:17px;border:1px solid var(--border);background:var(--panel);border-radius:21px;margin-top:15px}
 h2{font-size:22px;margin:9px 0}
-h3{font-size:17px;margin:0 0 13px}
-.field{margin:16px 0}
+h3{font-size:17px;margin:0 0 12px}
+.field{margin:15px 0}
 .field label{font-size:13px;color:var(--muted)}
-.actions{display:grid;gap:10px;margin-top:20px}
-.switch{
-  text-align:center;color:#bd9bff;padding:17px 8px;
-  background:transparent;width:100%;
-}
-.notice{
-  padding:13px;border-radius:13px;margin:13px 0;
-  background:var(--panel2);line-height:1.55;overflow-wrap:anywhere;
-}
+.actions{display:grid;gap:10px;margin-top:18px}
+.switch{text-align:center;color:#bd9bff;padding:16px 8px;background:transparent;width:100%}
+.notice{padding:12px;border-radius:13px;margin:12px 0;background:var(--panel2);line-height:1.5;overflow-wrap:anywhere}
 .error{color:#ff9cac}
 .success{color:var(--success)}
-.header{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;padding:8px 0 20px;
-}
-.avatar{
-  width:62px;height:62px;border-radius:21px;
-  background:linear-gradient(140deg,#9668e8,#482478);
-  display:flex;align-items:center;justify-content:center;
-  font-size:25px;font-weight:800;flex-shrink:0;
-}
-.row{display:flex;align-items:center;gap:12px}
-.badge{
-  display:inline-block;padding:5px 10px;border-radius:9px;
-  background:#302047;color:#d1b6ff;font-size:12px;
-}
-.stat{
-  padding:14px;border-radius:15px;background:var(--panel2);
-  min-width:0;flex:1;
-}
-.stat strong{display:block;font-size:19px;overflow-wrap:anywhere}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 15px}
+.avatar{width:54px;height:54px;border-radius:18px;background:linear-gradient(140deg,#9668e8,#482478);display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:800;flex-shrink:0}
+.row{display:flex;align-items:center;gap:10px}
+.row>*{min-width:0}
+.badge{display:inline-block;padding:5px 10px;border-radius:9px;background:#302047;color:#d1b6ff;font-size:12px}
+.stat{padding:13px;border-radius:15px;background:var(--panel2);min-width:0;flex:1;overflow-wrap:anywhere}
+.stat strong{display:block;font-size:18px;overflow-wrap:anywhere}
 .stat small{color:var(--muted)}
-.bottom{
-  position:fixed;z-index:10;bottom:0;left:0;right:0;
-  padding:9px 8px calc(9px + env(safe-area-inset-bottom));
-  background:#15101ff5;border-top:1px solid var(--border);
-  display:flex;justify-content:center;gap:6px;
-  backdrop-filter:blur(18px);
-}
-.nav{
-  background:transparent;color:var(--muted);border-radius:14px;
-  padding:9px 4px;flex:1;max-width:115px;font-size:12px;
-}
-.nav b{display:block;font-size:22px;margin-bottom:3px}
+.bottom{position:fixed;z-index:10;bottom:0;left:0;right:0;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#15101ff5;border-top:1px solid var(--border);display:flex;justify-content:center;gap:3px;backdrop-filter:blur(18px)}
+.nav{background:transparent;color:var(--muted);border-radius:12px;padding:8px 2px;flex:1;max-width:110px;font-size:11px}
+.nav b{display:block;font-size:20px;margin-bottom:3px}
 .nav.active{background:#302047;color:#d4b9ff}
-.footer{
-  margin-top:27px;text-align:center;font-size:12px;
-  color:var(--muted);line-height:1.5;
-}
-hr{border:0;border-top:1px solid var(--border);margin:20px 0}
-.loading{text-align:center;padding:45px 10px;color:var(--muted)}
+.footer{margin-top:24px;text-align:center;font-size:12px;color:var(--muted);line-height:1.5}
+hr{border:0;border-top:1px solid var(--border);margin:18px 0}
+.userResult{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid var(--border)}
+.userResult:last-child{border-bottom:0}
+.userInfo{flex:1;min-width:0;overflow-wrap:anywhere}
+.userInfo strong{display:block}
+.userInfo small{color:var(--muted)}
+.chatHead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.chatHead .userInfo{flex:1}
+.chatMessages{display:flex;flex-direction:column;gap:9px;min-height:100px;max-height:47dvh;overflow-y:auto;padding:8px 2px 14px}
+.bubble{max-width:84%;padding:10px 12px;border-radius:16px;background:var(--panel2);overflow-wrap:anywhere;white-space:pre-wrap;align-self:flex-start}
+.bubble.mine{align-self:flex-end;background:#54318a}
+.bubble time{display:block;font-size:10px;color:#d0c0e6;margin-top:5px;text-align:right}
+.sendRow{display:flex;gap:8px;align-items:flex-end}
+.sendRow input{margin:0;min-width:0;flex:1}
+.sendRow button{height:47px;min-width:66px}
+.empty{text-align:center;padding:20px 8px;color:var(--muted);line-height:1.5}
 .topline{height:3px;background:#211832;border-radius:9px;overflow:hidden}
 .topline div{height:100%;width:35%;background:var(--accent2);animation:load 1.2s infinite alternate}
 @keyframes load{to{width:95%}}
@@ -120,511 +72,332 @@ hr{border:0;border-top:1px solid var(--border);margin:20px 0}
 <body>
 
 <div id="loading" class="page">
-  <div class="brand">waolo<span>.</span></div>
-  <p class="sub">Подключаемся к серверу...</p>
-  <div class="topline"><div></div></div>
+<div class="brand">waolo<span>.</span></div>
+<p class="sub">Подключаемся к серверу...</p>
+<div class="topline"><div></div></div>
 </div>
 
 <section id="auth" class="page hidden">
-  <div style="padding-top:38px">
-    <div class="brand">waolo<span>.</span></div>
-    <p class="sub">Твоё общение. Твои люди.</p>
-  </div>
-  <div class="card">
-    <h2 id="authTitle">Создать аккаунт</h2>
-    <p class="sub" id="authDesc">Зарегистрируйся, чтобы начать общение.</p>
-    <div id="authNotice" class="notice hidden"></div>
-    <form id="authForm">
-      <div class="field">
-        <label for="email">Электронная почта</label>
-        <input id="email" type="email" autocomplete="email"
-          placeholder="you@example.com" required>
-      </div>
-      <div class="field">
-        <label for="password">Пароль (не менее 8 символов)</label>
-        <input id="password" type="password" minlength="8"
-          autocomplete="new-password" placeholder="Минимум 8 символов" required>
-      </div>
-      <div class="actions">
-        <button class="primary" id="authSubmit" type="submit">Создать аккаунт</button>
-      </div>
-    </form>
-    <button id="switchAuth" class="switch">
-      Уже есть аккаунт? Войти
-    </button>
-  </div>
-  <div class="footer">Waolo Messenger</div>
+<div style="padding-top:25px">
+<div class="brand">waolo<span>.</span></div>
+<p class="sub">Твоё общение. Твои люди.</p>
+</div>
+<div class="card">
+<h2 id="authTitle">Создать аккаунт</h2>
+<p class="sub" id="authDesc">Зарегистрируйся, чтобы начать общение.</p>
+<div id="authNotice" class="notice hidden"></div>
+<form id="authForm">
+<div class="field"><label for="email">Электронная почта</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+<div class="field"><label for="password">Пароль (не менее 8 символов)</label><input id="password" type="password" minlength="8" autocomplete="new-password" placeholder="Минимум 8 символов" required></div>
+<button class="primary" id="authSubmit" type="submit">Создать аккаунт</button>
+</form>
+<button id="switchAuth" class="switch">Уже есть аккаунт? Войти</button>
+</div>
+<div class="footer">Waolo Messenger</div>
 </section>
 
 <section id="onboarding" class="page hidden">
-  <div class="brand">waolo<span>.</span></div>
-  <div class="card">
-    <h2>Создай свой профиль</h2>
-    <p class="sub">Заполни данные. Username поможет другим найти тебя.</p>
-    <div id="profileNotice" class="notice hidden"></div>
-    <form id="profileForm">
-      <div class="field">
-        <label for="fullName">Ф. И. О.</label>
-        <input id="fullName" maxlength="100" required placeholder="Имя и фамилия">
-      </div>
-      <div class="field">
-        <label for="nickname">Никнейм</label>
-        <input id="nickname" maxlength="40" required placeholder="Твоё имя в приложении">
-      </div>
-      <div class="field">
-        <label for="username">Username (латиница, цифры, _)</label>
-        <input id="username" maxlength="24" minlength="3"
-          pattern="[A-Za-z0-9_]{3,24}" required placeholder="waolo_user">
-      </div>
-      <div class="field">
-        <label for="birthYear">Год рождения</label>
-        <input id="birthYear" type="number" min="1900" max="2026"
-          required placeholder="2014">
-      </div>
-      <button class="primary" id="saveProfile" type="submit">
-        Сохранить профиль
-      </button>
-    </form>
-  </div>
+<div class="brand">waolo<span>.</span></div>
+<div class="card">
+<h2>Создай свой профиль</h2>
+<p class="sub">Username поможет другим найти тебя.</p>
+<div id="profileNotice" class="notice hidden"></div>
+<form id="profileForm">
+<div class="field"><label for="fullName">Ф. И. О.</label><input id="fullName" maxlength="100" required placeholder="Имя и фамилия"></div>
+<div class="field"><label for="nickname">Никнейм</label><input id="nickname" maxlength="40" required placeholder="Твоё имя в приложении"></div>
+<div class="field"><label for="username">Username (латиница, цифры, _)</label><input id="username" maxlength="24" minlength="3" pattern="[A-Za-z0-9_]{3,24}" required placeholder="waolo_user"></div>
+<div class="field"><label for="birthYear">Год рождения</label><input id="birthYear" type="number" min="1900" max="2026" required placeholder="2014"></div>
+<button class="primary" id="saveProfile" type="submit">Сохранить профиль</button>
+</form>
+</div>
 </section>
 
 <main id="app" class="page hidden">
-  <header class="header">
-    <div>
-      <div class="brand">waolo<span>.</span></div>
-      <div class="sub" style="font-size:12px">Твой мир общения</div>
-    </div>
-    <div class="avatar" id="smallAvatar">W</div>
-  </header>
+<header class="header">
+<div><div class="brand">waolo<span>.</span></div><div class="sub" style="font-size:12px">Твой мир общения</div></div>
+<div class="avatar" id="smallAvatar">W</div>
+</header>
 
-  <section id="homeTab">
-    <div class="card">
-      <span class="badge">WAOLO MESSENGER</span>
-      <h2 id="welcome">Добро пожаловать!</h2>
-      <p class="sub">Твой аккаунт Waolo. Здесь будут твои чаты, друзья и подарки.</p>
-      <hr>
-      <div class="row">
-        <div class="stat">
-          <small>Твой постоянный ID</small>
-          <strong id="homeId">—</strong>
-        </div>
-        <button class="secondary" id="copyId">Копировать</button>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Сообщения</h3>
-      <p class="sub">Личные переписки подключим следующим этапом.</p>
-    </div>
-    <div class="card">
-      <h3>Подарки</h3>
-      <p class="sub">Каталог уже подготовлен в базе. Отправка подарков будет добавлена следующим этапом.</p>
-    </div>
-  </section>
+<section id="homeTab">
+<div class="card">
+<span class="badge">WAOLO MESSENGER</span>
+<h2 id="welcome">Добро пожаловать!</h2>
+<p class="sub">Общайся, находи пользователей и отправляй подарки.</p>
+<hr>
+<div class="row"><div class="stat"><small>Твой постоянный ID</small><strong id="homeId">—</strong></div><button class="secondary" id="copyId">Копировать</button></div>
+</div>
+<div class="card">
+<h3>Личные сообщения</h3>
+<p class="sub">Найди пользователя по username или ID, чтобы начать переписку.</p>
+<button class="primary" id="openChats">Открыть сообщения</button>
+</div>
+<div class="card">
+<h3>Звёзды и подарки</h3>
+<p class="sub">Баланс звёзд и отправка подарков подключаются следующим этапом.</p>
+<button class="secondary" style="width:100%" id="openProfileGifts">Мой профиль</button>
+</div>
+</section>
 
-  <section id="profileTab" class="hidden">
-    <div class="card">
-      <div class="row">
-        <div class="avatar" id="bigAvatar">W</div>
-        <div style="min-width:0">
-          <h2 id="profileNickname" style="overflow-wrap:anywhere">Профиль</h2>
-          <div class="sub" id="profileUsername">@username</div>
-          <div id="creatorBadge" class="badge hidden">✓ Создатель Waolo</div>
-        </div>
-      </div>
-      <hr>
-      <div class="field"><label>Ф. И. О.</label><div id="showFullName">—</div></div>
-      <div class="field"><label>Год рождения</label><div id="showBirthYear">—</div></div>
-      <div class="field"><label>Постоянный ID</label><div id="showId">—</div></div>
-      <div class="field"><label>Звёзды</label><div id="showStars">0</div></div>
-      <p class="sub">Твои полученные подарки появятся здесь после подключения этой функции.</p>
-    </div>
-    <div class="card">
-      <h3>Редактировать профиль</h3>
-      <form id="editForm">
-        <div class="field">
-          <label for="editFullName">Ф. И. О.</label>
-          <input id="editFullName" maxlength="100" required>
-        </div>
-        <div class="field">
-          <label for="editNickname">Никнейм</label>
-          <input id="editNickname" maxlength="40" required>
-        </div>
-        <div class="field">
-          <label for="editUsername">Username</label>
-          <input id="editUsername" maxlength="24" minlength="3"
-            pattern="[A-Za-z0-9_]{3,24}" required>
-        </div>
-        <div class="field">
-          <label for="editBirthYear">Год рождения</label>
-          <input id="editBirthYear" type="number" min="1900" max="2026" required>
-        </div>
-        <button class="primary" id="editSubmit" type="submit">Сохранить изменения</button>
-      </form>
-      <div id="editNotice" class="notice hidden"></div>
-    </div>
-  </section>
+<section id="chatsTab" class="hidden">
+<div class="card">
+<h2>Сообщения</h2>
+<p class="sub">Поиск пользователей Waolo.</p>
+<form id="searchForm">
+<input id="userSearch" placeholder="Username или постоянный ID" autocomplete="off" required>
+<button class="primary" id="searchButton" style="margin-top:9px" type="submit">Найти пользователя</button>
+</form>
+<div id="searchNotice" class="notice hidden"></div>
+<div id="searchResults"></div>
+</div>
 
-  <section id="settingsTab" class="hidden">
-    <div class="card">
-      <h2>Настройки</h2>
-      <p class="sub">Управление твоим аккаунтом.</p>
-      <div class="notice">Данные сохраняются в Supabase.</div>
-      <button class="secondary" id="refreshProfile" style="width:100%">
-        Обновить данные
-      </button>
-      <hr>
-      <button class="primary" id="logout" style="background:#38203e">
-        Выйти из аккаунта
-      </button>
-      <div class="footer">Создатель приложения Nexio это waolo</div>
-    </div>
-  </section>
+<div id="conversationCard" class="card hidden">
+<div class="chatHead">
+<button id="backToSearch" class="secondary">Назад</button>
+<div class="avatar" id="chatAvatar">W</div>
+<div class="userInfo"><strong id="chatNickname">Пользователь</strong><small id="chatUsername" class="sub">@username</small></div>
+</div>
+<div id="chatNotice" class="notice hidden"></div>
+<div id="chatMessages" class="chatMessages"><div class="empty">Загружаем сообщения...</div></div>
+<form id="sendForm" class="sendRow">
+<input id="messageInput" maxlength="4000" placeholder="Написать сообщение..." autocomplete="off" required>
+<button id="sendButton" class="primary" type="submit" style="width:auto;padding:0 15px">Отправить</button>
+</form>
+<p class="sub" style="font-size:11px">Только текстовые сообщения. Не отправляй пароли и личные данные.</p>
+</div>
+</section>
+
+<section id="profileTab" class="hidden">
+<div class="card">
+<div class="row">
+<div class="avatar" id="bigAvatar">W</div>
+<div style="min-width:0"><h2 id="profileNickname" style="overflow-wrap:anywhere">Профиль</h2><div class="sub" id="profileUsername">@username</div><div id="creatorBadge" class="badge hidden">Создатель Waolo</div></div>
+</div>
+<hr>
+<div class="field"><label>Ф. И. О.</label><div id="showFullName">—</div></div>
+<div class="field"><label>Год рождения</label><div id="showBirthYear">—</div></div>
+<div class="field"><label>Постоянный ID</label><div id="showId">—</div></div>
+<div class="field"><label>Звёзды</label><div id="showStars">0</div></div>
+<p class="sub">Полученные подарки появятся здесь после подключения системы подарков.</p>
+</div>
+<div class="card">
+<h3>Редактировать профиль</h3>
+<form id="editForm">
+<div class="field"><label for="editFullName">Ф. И. О.</label><input id="editFullName" maxlength="100" required></div>
+<div class="field"><label for="editNickname">Никнейм</label><input id="editNickname" maxlength="40" required></div>
+<div class="field"><label for="editUsername">Username</label><input id="editUsername" maxlength="24" minlength="3" pattern="[A-Za-z0-9_]{3,24}" required></div>
+<div class="field"><label for="editBirthYear">Год рождения</label><input id="editBirthYear" type="number" min="1900" max="2026" required></div>
+<button class="primary" id="editSubmit" type="submit">Сохранить изменения</button>
+</form>
+<div id="editNotice" class="notice hidden"></div>
+</div>
+</section>
+
+<section id="settingsTab" class="hidden">
+<div class="card">
+<h2>Настройки</h2><p class="sub">Управление аккаунтом.</p>
+<div class="notice">Данные сохраняются в Supabase.</div>
+<button class="secondary" id="refreshProfile" style="width:100%">Обновить данные</button>
+<hr>
+<button class="primary" id="logout" style="background:#38203e">Выйти из аккаунта</button>
+<div class="footer">Waolo Messenger</div>
+</div>
+</section>
 </main>
 
 <nav id="bottom" class="bottom hidden">
-  <button class="nav active" data-tab="home"><b>⌂</b>Главная</button>
-  <button class="nav" data-tab="profile"><b>◉</b>Профиль</button>
-  <button class="nav" data-tab="settings"><b>⚙</b>Настройки</button>
+<button class="nav active" data-tab="home"><b>⌂</b>Главная</button>
+<button class="nav" data-tab="chats"><b>▤</b>Сообщения</button>
+<button class="nav" data-tab="profile"><b>◉</b>Профиль</button>
+<button class="nav" data-tab="settings"><b>⚙</b>Настройки</button>
 </nav>
 
 <script>
 (() => {
-  'use strict';
+'use strict';
 
-  const SUPABASE_URL = 'https://hohymjvccxnmcjrlyukw.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_x-R1FaLkdtN41_z6HVVtOg_0eLRWxjE';
+const SUPABASE_URL = 'https://hohymjvccxnmcjrlyukw.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_x-R1FaLkdtN41_z6HVVtOg_0eLRWxjE';
+const REDIRECT_URL = 'https://gggdh8e92i.github.io/waolo/';
 
-  const $ = id => document.getElementById(id);
-  let db = null;
-  let user = null;
-  let profile = null;
-  let signupMode = true;
-  let authListener = null;
+const $ = id => document.getElementById(id);
+let db=null,user=null,profile=null,signupMode=true,routing=false;
+let currentTarget=null,refreshTimer=null,loadingMessages=false;
 
-  function showOnly(id) {
-    ['loading','auth','onboarding','app'].forEach(name => {
-      $(name).classList.toggle('hidden', name !== id);
-    });
-    $('bottom').classList.toggle('hidden', id !== 'app');
-  }
-
-  function notice(id, message, type = '') {
-    const el = $(id);
-    el.textContent = message;
-    el.className = 'notice' + (type ? ' ' + type : '');
-    el.classList.remove('hidden');
-  }
-
-  function friendlyError(error) {
-    const msg = error?.message || 'Неизвестная ошибка';
-    if (/duplicate key|unique constraint/i.test(msg))
-      return 'Этот username уже занят. Выбери другой.';
-    if (/invalid login credentials/i.test(msg))
-      return 'Неверная почта или пароль.';
-    if (/email not confirmed/i.test(msg))
-      return 'Подтверди почту по ссылке в письме.';
-    if (/already registered/i.test(msg))
-      return 'Эта почта уже зарегистрирована. Попробуй войти.';
-    if (/row-level security|permission denied/i.test(msg))
-      return 'Supabase запретил действие. Нужно проверить настройки доступа к таблице profiles.';
-    return msg;
-  }
-
-  async function loadProfile() {
-    const { data, error } = await db
-      .from('profiles')
-      .select('*')
-      .eq('id', user.id)
-      .single();
-
-    if (error) throw error;
-    profile = data;
-  }
-
-  function renderProfile() {
-    const p = profile;
-    $('welcome').textContent = 'Привет, ' + (p.nickname || 'пользователь') + '!';
-    $('homeId').textContent = p.user_id ?? '—';
-    $('profileNickname').textContent = p.nickname || 'Пользователь';
-    $('profileUsername').textContent = '@' + (p.username || '—');
-    $('showFullName').textContent = p.full_name || '—';
-    $('showBirthYear').textContent = p.birth_year || '—';
-    $('showId').textContent = p.user_id ?? '—';
-    $('showStars').textContent = p.stars ?? 0;
-
-    const initial = (p.nickname || 'W').trim().charAt(0).toUpperCase() || 'W';
-    $('smallAvatar').textContent = initial;
-    $('bigAvatar').textContent = initial;
-
-    $('creatorBadge').classList.toggle(
-      'hidden', !(p.is_creator && p.is_verified)
-    );
-
-    $('editFullName').value = p.full_name || '';
-    $('editNickname').value = p.nickname || '';
-    $('editUsername').value = p.username || '';
-    $('editBirthYear').value = p.birth_year || '';
-  }
-
-  async function routeUser() {
-    if (!user) {
-      showOnly('auth');
-      return;
-    }
-
+function showOnly(id){
+  ['loading','auth','onboarding','app'].forEach(n=>$(n).classList.toggle('hidden',n!==id));
+  $('bottom').classList.toggle('hidden',id!=='app');
+}
+function notice(id,message,type=''){
+  const el=$(id);el.textContent=message;
+  el.className='notice'+(type?' '+type:'');el.classList.remove('hidden');
+}
+function clearNotice(id){$(id).classList.add('hidden')}
+function friendlyError(error){
+  const msg=error?.message||'Неизвестная ошибка';
+  if(/duplicate key|unique constraint/i.test(msg))return 'Этот username уже занят. Выбери другой.';
+  if(/invalid login credentials/i.test(msg))return 'Неверная почта или пароль.';
+  if(/email not confirmed/i.test(msg))return 'Подтверди почту по ссылке в письме.';
+  if(/already registered|user already registered/i.test(msg))return 'Эта почта уже зарегистрирована. Попробуй войти.';
+  if(/otp_expired|expired|invalid token/i.test(msg))return 'Ссылка подтверждения истекла или уже использована.';
+  if(/row-level security|permission denied/i.test(msg))return 'Supabase запретил действие. Проверь политики доступа таблиц.';
+  if(/network|fetch/i.test(msg))return 'Не удалось подключиться. Проверь интернет.';
+  return msg;
+}
+async function loadProfile(){
+  const {data,error}=await db.from('profiles').select('*').eq('id',user.id).maybeSingle();
+  if(error)throw error;
+  profile=data||null;
+}
+function renderProfile(){
+  const p=profile;
+  $('welcome').textContent='Привет, '+(p.nickname||'пользователь')+'!';
+  $('homeId').textContent=p.user_id??'—';
+  $('profileNickname').textContent=p.nickname||'Пользователь';
+  $('profileUsername').textContent='@'+(p.username||'—');
+  $('showFullName').textContent=p.full_name||'—';
+  $('showBirthYear').textContent=p.birth_year||'—';
+  $('showId').textContent=p.user_id??'—';
+  $('showStars').textContent=p.stars??0;
+  const initial=(p.nickname||'W').trim().charAt(0).toUpperCase()||'W';
+  $('smallAvatar').textContent=initial;$('bigAvatar').textContent=initial;
+  $('creatorBadge').classList.toggle('hidden',!(p.is_creator&&p.is_verified));
+  $('editFullName').value=p.full_name||'';
+  $('editNickname').value=p.nickname||'';
+  $('editUsername').value=p.username||'';
+  $('editBirthYear').value=p.birth_year||'';
+}
+async function routeUser(){
+  if(routing)return;
+  routing=true;
+  try{
+    if(!user){showOnly('auth');return}
     showOnly('loading');
-
-    try {
-      await loadProfile();
-
-      if (!profile.full_name || !profile.nickname ||
-          !profile.username || !profile.birth_year) {
-        showOnly('onboarding');
-      } else {
-        renderProfile();
-        showOnly('app');
-        selectTab('home');
-      }
-    } catch (error) {
-      showOnly('auth');
-      notice(
-        'authNotice',
-        'Не удалось загрузить профиль: ' + friendlyError(error),
-        'error'
-      );
-    }
+    await loadProfile();
+    if(!profile||!profile.full_name||!profile.nickname||!profile.username||!profile.birth_year){
+      showOnly('onboarding');
+    }else{renderProfile();showOnly('app');selectTab('home')}
+  }catch(error){
+    showOnly('auth');notice('authNotice','Не удалось загрузить профиль: '+friendlyError(error),'error');
+  }finally{routing=false}
+}
+function stopRefresh(){
+  if(refreshTimer){clearInterval(refreshTimer);refreshTimer=null}
+}
+function selectTab(tab){
+  stopRefresh();
+  ['home','chats','profile','settings'].forEach(n=>$(n+'Tab').classList.toggle('hidden',n!==tab));
+  document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+  if(tab==='chats'&&currentTarget)startRefresh();
+}
+function openChats(){
+  currentTarget=null;stopRefresh();
+  $('conversationCard').classList.add('hidden');
+  $('searchResults').replaceChildren();
+  clearNotice('searchNotice');
+  selectTab('chats');
+  $('userSearch').focus();
+}
+function safeText(tag,text,className){
+  const el=document.createElement(tag);el.textContent=text??'';
+  if(className)el.className=className;
+  return el;
+}
+function publicLabel(p){
+  return p.nickname||p.username||'Пользователь';
+}
+async function findUser(term){
+  const cleaned=term.trim().replace(/^@/,'');
+  if(!cleaned)throw new Error('Введи username или постоянный ID.');
+  if(cleaned.length>100)throw new Error('Слишком длинный запрос.');
+  let found=null;
+  const byName=await db.from('profiles')
+    .select('id,user_id,username,nickname,is_creator,is_verified')
+    .ilike('username',cleaned).limit(10);
+  if(byName.error)throw byName.error;
+  found=(byName.data||[]).find(p=>String(p.id)!==user.id)||null;
+  if(!found){
+    const byId=await db.from('profiles')
+      .select('id,user_id,username,nickname,is_creator,is_verified')
+      .eq('user_id',cleaned).limit(10);
+    if(byId.error)throw byId.error;
+    found=(byId.data||[]).find(p=>String(p.id)!==user.id)||null;
   }
-
-  function selectTab(tab) {
-    ['home','profile','settings'].forEach(name => {
-      $(name + 'Tab').classList.toggle('hidden', name !== tab);
-    });
-
-    document.querySelectorAll('.nav').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.tab === tab);
-    });
-  }
-
-  $('switchAuth').addEventListener('click', () => {
-    signupMode = !signupMode;
-
-    $('authTitle').textContent = signupMode
-      ? 'Создать аккаунт' : 'С возвращением';
-
-    $('authDesc').textContent = signupMode
-      ? 'Зарегистрируйся, чтобы начать общение.'
-      : 'Войди в свой аккаунт Waolo.';
-
-    $('authSubmit').textContent = signupMode
-      ? 'Создать аккаунт' : 'Войти';
-
-    $('switchAuth').textContent = signupMode
-      ? 'Уже есть аккаунт? Войти'
-      : 'Нет аккаунта? Зарегистрироваться';
-
-    $('password').autocomplete = signupMode
-      ? 'new-password' : 'current-password';
-
-    $('authNotice').classList.add('hidden');
-  });
-
-  $('authForm').addEventListener('submit', async event => {
-    event.preventDefault();
-
-    const btn = $('authSubmit');
-    btn.disabled = true;
-    btn.textContent = 'Подождите...';
-    $('authNotice').classList.add('hidden');
-
-    try {
-      const email = $('email').value.trim();
-      const password = $('password').value;
-
-      if (signupMode) {
-        const redirectUrl = location.href.split('#')[0].split('?')[0];
-
-        const { data, error } = await db.auth.signUp({
-          email,
-          password,
-          options: { emailRedirectTo: redirectUrl }
-        });
-
-        if (error) throw error;
-
-        if (data.session && data.user) {
-          user = data.user;
-          await routeUser();
-        } else {
-          notice(
-            'authNotice',
-            'Регистрация отправлена. Открой письмо от Supabase и нажми ссылку подтверждения. После подтверждения вернись в приложение и войди.',
-            'success'
-          );
-        }
-      } else {
-        const { data, error } = await db.auth.signInWithPassword({
-          email, password
-        });
-
-        if (error) throw error;
-        user = data.user;
-        await routeUser();
-      }
-    } catch (error) {
-      notice('authNotice', friendlyError(error), 'error');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = signupMode ? 'Создать аккаунт' : 'Войти';
-    }
-  });
-
-  async function saveProfile(event, editing) {
-    event.preventDefault();
-
-    const btn = editing ? $('editSubmit') : $('saveProfile');
-    const noticeId = editing ? 'editNotice' : 'profileNotice';
-    btn.disabled = true;
-    $(noticeId).classList.add('hidden');
-
-    try {
-      const fullName = $(editing ? 'editFullName' : 'fullName').value.trim();
-      const nickname = $(editing ? 'editNickname' : 'nickname').value.trim();
-      const username = $(editing ? 'editUsername' : 'username').value.trim().toLowerCase();
-      const year = Number($(editing ? 'editBirthYear' : 'birthYear').value);
-
-      if (!fullName || !nickname)
-        throw new Error('Заполни Ф. И. О. и никнейм.');
-
-      if (!/^[a-z0-9_]{3,24}$/.test(username))
-        throw new Error('Username: 3–24 символа, латиница, цифры и _.');
-
-      const currentYear = new Date().getFullYear();
-      if (!Number.isInteger(year) || year < 1900 || year > currentYear)
-        throw new Error('Проверь год рождения.');
-
-      const { error } = await db
-        .from('profiles')
-        .update({
-          full_name: fullName,
-          nickname,
-          username,
-          birth_year: year
-        })
-        .eq('id', user.id);
-
-      if (error) throw error;
-
-      await loadProfile();
-      renderProfile();
-
-      if (editing) {
-        notice(noticeId, 'Профиль сохранён.', 'success');
-      } else {
-        showOnly('app');
-        selectTab('home');
-      }
-    } catch (error) {
-      notice(noticeId, friendlyError(error), 'error');
-    } finally {
-      btn.disabled = false;
-    }
-  }
-
-  $('profileForm').addEventListener('submit', e => saveProfile(e, false));
-  $('editForm').addEventListener('submit', e => saveProfile(e, true));
-
-  document.querySelectorAll('.nav').forEach(btn => {
-    btn.addEventListener('click', () => selectTab(btn.dataset.tab));
-  });
-
-  $('copyId').addEventListener('click', async () => {
-    const id = String(profile.user_id);
-
-    try {
-      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
-      await navigator.clipboard.writeText(id);
-      $('copyId').textContent = 'Скопировано!';
-      setTimeout(() => $('copyId').textContent = 'Копировать', 1500);
-    } catch {
-      prompt('Скопируй свой ID:', id);
-    }
-  });
-
-  $('refreshProfile').addEventListener('click', async () => {
-    try {
-      await loadProfile();
-      renderProfile();
-      alert('Данные обновлены.');
-    } catch (error) {
-      alert(friendlyError(error));
-    }
-  });
-
-  $('logout').addEventListener('click', async () => {
-    if (!confirm('Выйти из аккаунта?')) return;
-
-    const { error } = await db.auth.signOut();
-
-    if (error) {
-      alert(friendlyError(error));
+  if(!found)throw new Error('Пользователь не найден. Проверь username или ID.');
+  return found;
+}
+function renderSearchResult(target){
+  const host=$('searchResults');host.replaceChildren();
+  const row=document.createElement('div');row.className='userResult';
+  const avatar=safeText('div',(publicLabel(target).charAt(0)||'W').toUpperCase(),'avatar');
+  const info=document.createElement('div');info.className='userInfo';
+  info.append(safeText('strong',publicLabel(target)),safeText('small','@'+(target.username||'—')));
+  if(target.is_creator&&target.is_verified)info.append(safeText('small','Создатель Waolo'));
+  const button=safeText('button','Написать','secondary');
+  button.type='button';button.addEventListener('click',()=>openConversation(target));
+  row.append(avatar,info,button);host.append(row);
+}
+async function openConversation(target){
+  if(String(target.id)===String(user.id)){notice('searchNotice','Нельзя начать переписку с самим собой.','error');return}
+  stopRefresh();currentTarget=target;
+  $('conversationCard').classList.remove('hidden');
+  $('chatNickname').textContent=publicLabel(target);
+  $('chatUsername').textContent='@'+(target.username||'—');
+  $('chatAvatar').textContent=(publicLabel(target).charAt(0)||'W').toUpperCase();
+  $('chatMessages').replaceChildren(safeText('div','Загружаем сообщения...','empty'));
+  clearNotice('chatNotice');
+  await loadMessages();
+  startRefresh();
+  $('messageInput').focus();
+}
+async function loadMessages(){
+  if(!currentTarget||loadingMessages)return;
+  loadingMessages=true;
+  try{
+    const targetId=currentTarget.id;
+    const {data,error}=await db.from('private_messages')
+      .select('id,sender_id,recipient_id,message,created_at')
+      .or('and(sender_id.eq.'+user.id+',recipient_id.eq.'+targetId+'),and(sender_id.eq.'+targetId+',recipient_id.eq.'+user.id+')')
+      .order('created_at',{ascending:true}).limit(200);
+    if(error)throw error;
+    const host=$('chatMessages');
+    const oldLast=host.lastElementChild?.dataset?.messageId||'';
+    const newLast=data?.length?String(data[data.length-1].id):'';
+    if(oldLast===newLast&&host.children.length>0)return;
+    host.replaceChildren();
+    if(!data||data.length===0){
+      host.append(safeText('div','Сообщений пока нет. Напиши первым.','empty'));
       return;
     }
-
-    user = null;
-    profile = null;
-    showOnly('auth');
-  });
-
-  async function start() {
-    try {
-      if (!window.supabase) {
-        throw new Error('Библиотека Supabase не загрузилась. Проверь интернет.');
-      }
-
-      db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-        auth: {
-          persistSession: true,
-          autoRefreshToken: true,
-          detectSessionInUrl: true
-        }
-      });
-
-      const { data, error } = await db.auth.getSession();
-      if (error) throw error;
-
-      user = data.session?.user || null;
-      await routeUser();
-
-      const { data: listener } = db.auth.onAuthStateChange(
-        (event, session) => {
-          user = session?.user || null;
-
-          if (event === 'SIGNED_OUT') {
-            profile = null;
-            showOnly('auth');
-          } else if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
-            setTimeout(() => routeUser(), 0);
-          }
-        }
-      );
-
-      authListener = listener.subscription;
-    } catch (error) {
-      showOnly('auth');
-      notice(
-        'authNotice',
-        'Ошибка подключения: ' + friendlyError(error),
-        'error'
-      );
+    for(const m of data){
+      const bubble=safeText('div',m.message,'bubble'+(String(m.sender_id)===String(user.id)?' mine':''));
+      bubble.dataset.messageId=m.id;
+      const date=m.created_at?new Date(m.created_at):null;
+      const time=safeText('time',date&&!Number.isNaN(date.getTime())?date.toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'');
+      bubble.append(time);host.append(bubble);
     }
-  }
-
-  window.addEventListener('beforeunload', () => {
-    authListener?.unsubscribe();
-  });
-
-  start();
-})();
-</script>
-</body>
-      </html>
+    host.scrollTop=host.scrollHeight;
+  }catch(error){
+    notice('chatNotice','Не удалось загрузить сообщения: '+friendlyError(error),'error');
+  }finally{loadingMessages=false}
+}
+function startRefresh(){
+  stopRefresh();
+  if(!currentTarget)return;
+  refreshTimer=setInterval(()=>{
+    if(currentTarget&&!$('chatsTab').classList.contains('hidden'))loadMessages();
+  },4000);
+}
+$('switchAuth').addEventListener('click',()=>{
+  signupMode=!signupMode;
+  $('authTitle').textContent=signupMode?'Создать аккаунт':'С возвращением';
+  $('authDesc').textContent=signupMode?'Зарегистрируйся, чтобы начать общение.':'Войди в свой аккаунт Waolo.';
+  $('authSubmit').textContent=signupMode?'Создать аккаунт':'Войти';
+  $('switchAuth').textContent=signupMode?'Уже есть аккаунт? Войти':'Нет аккаунта? Зарегистрироваться';
+  $('password').autocomplete=signupMode?'new-password':'current-password';
+  $('password').value='';clearNotice('authNotice');
+});
+$('authForm').addEventListener('submit',async e=>{
+  e.preventDefault();const btn=$('authSubmit');btn.disabled=true;
+  btn.textContent='Подождите...';clearNotice('authNotice');
+  try{
+    const ema
